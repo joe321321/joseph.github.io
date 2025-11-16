@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Online Store</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; padding: 0; }
+        .header { background: #2c3e50; color: white; padding: 1rem; text-align: center; }
+        .products { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; padding: 2rem; }
+        .product { border: 1px solid #ddd; padding: 1rem; text-align: center; border-radius: 5px; }
+        .price { color: #e74c3c; font-weight: bold; font-size: 1.2rem; }
+        .buy-btn { background: #27ae60; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; }
+        .cart { position: fixed; top: 10px; right: 10px; background: #34495e; color: white; padding: 10px; border-radius: 5px; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🛍️ My Store</h1>
+        <p>Welcome to our online shop!</p>
+    </div>
+
+    <div class="cart">🛒 Cart: <span id="cart-count">0</span></div>
+
+    <div class="products">
+        <div class="product">
+            <h3>Product 1</h3>
+            <p>Amazing product description</p>
+            <div class="price">$19.99</div>
+            <button class="buy-btn" onclick="addToCart(1)">Add to Cart</button>
+        </div>
+        
+        <div class="product">
+            <h3>Product 2</h3>
+            <p>Another great product</p>
+            <div class="price">$29.99</div>
+            <button class="buy-btn" onclick="addToCart(2)">Add to Cart</button>
+        </div>
+        
+        <div class="product">
+            <h3>Product 3</h3>
+            <p>Premium quality item</p>
+            <div class="price">$39.99</div>
+            <button class="buy-btn" onclick="addToCart(3)">Add to Cart</button>
+        </div>
+    </div>
+
+    <script>
+        let cartCount = 0;
+        
+        function addToCart(productId) {
+            cartCount++;
+            document.getElementById('cart-count').textContent = cartCount;
+            alert('Product ' + productId + ' added to cart!');
+            // In a real store, you would save to localStorage
+            localStorage.setItem('cartCount', cartCount);
+        }
+        
+        // Load cart count on page load
+        window.onload = function() {
+            const savedCount = localStorage.getItem('cartCount');
+            if (savedCount) {
+                cartCount = parseInt(savedCount);
+                document.getElementById('cart-count').textContent = cartCount;
+            }
+        }
+    </script>
+</body>
+</html>
